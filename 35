@@ -1,0 +1,21 @@
+class Solution:
+    def searchInsert(self, nums: List[int], target: int) -> int:
+        import math
+        L=0
+        R=len(nums)-1
+        if (target>nums[R]):
+            return R+1
+        if (target<nums[L]):
+            return 0
+        while (L<=R):
+            M=math.floor((L+R)/2)
+            if (target<nums[M]):
+                R=M-1
+            elif (target>nums[M]):
+                L=M+1
+            elif (target==nums[M]):
+                return M
+        if (R<L):
+            return L
+
+#此题要注意分四种情况。1.插入值在最左侧2.最右侧3.数组中存在该值4.位于中间。由于没有重复的数字，可以使用二分法。第4种情况发生，使得R<L（R-L=-1）
